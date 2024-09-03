@@ -25,6 +25,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            transition: opacity 1s ease; /* For fade-out effect */
         }
         @keyframes gradientBG {
             0% {background-position: 0% 50%;}
@@ -168,10 +169,13 @@
             gsap.to(underline, {duration: 0.3, x: x * 20, rotation: x * 5});
         });
 
-        // Enter Site button click
+        // Enter Site button click with transition effect
         enterSiteBtn.addEventListener('click', () => {
-            // Navigate to the main website
-            window.location.href = 'https://lulab-v4.vercel.app/'; // Redirect to the main website
+            // Fade out the animation container
+            gsap.to(container, {duration: 1, opacity: 0, onComplete: () => {
+                // Redirect to the main website after fade-out
+                window.location.href = 'https://lulab-v4.vercel.app/';
+            }});
         });
     </script>
 </body>
